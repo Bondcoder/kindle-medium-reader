@@ -1,0 +1,4 @@
+https://medium.com/@ariel.salem1989/an-easy-to-use-guide-to-big-o-time-complexity-5dcf4be8a444
+https://medium.com/@PaulDJohnston/what-do-climate-change-data-centres-and-cloud-have-to-do-with-each-other-9b908887c610
+https://medium.com/better-programming/a-practical-introduction-to-big-o-a9f9c416aaaf
+https://medium.com/@amejiarosario/8-time-complexity-examples-that-every-programmer-should-know-171bd21e5ba
