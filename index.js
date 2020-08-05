@@ -30,7 +30,7 @@ async function fetchArticle(url, number) {
 
 async function readTextFile() {
     let startTime = Date.now();
-    var file = "file://C:/Users/pgonzalez/Documents/medium-kindle-reader/ToRead/articles.txt";
+    var file = "file://" + __dirname + "\\ToRead\\articles.txt";
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function () {
