@@ -24,5 +24,5 @@ Functionally, this script will spin up a headless browser (puppeteer) that will 
 ## Tech used
 
 **Built with:**
-* [Puppeteer!](https://github.com/puppeteer/puppeteer)
-* [pdf-merger-js!](https://www.npmjs.com/package/pdf-merger-js)
+* [Puppeteer](https://github.com/puppeteer/puppeteer)
+* [pdf-merger-js](https://www.npmjs.com/package/pdf-merger-js)
