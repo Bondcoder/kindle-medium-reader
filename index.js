@@ -8,10 +8,14 @@ async function openBrowser() {
 }
 
 async function fetchArticle(url, number) {
+    if (number % 4 === 0) {
+        await browser.close();
+        await openBrowser();
+    }
     let page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 800 });
     await page.goto(url, { waitUntil: "load" });
-    if (number === 0) {
+    if (number === 0 || number % 4 === 0) {
         await page.$eval('body > div:nth-child(19) > div > div > div > div > div > div > span > button', el => el.click());
     }
     await autoScroll(page);
