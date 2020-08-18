@@ -17,9 +17,6 @@ jobs:
     
     - name: Install all of the node modules
       run: npm install
-
-    - name: Run script
-      run: node index.js
     
     - name: On complete
       run: echo Build finished
