@@ -6,7 +6,4 @@ https://medium.com/@emeyerson/ive-read-thousands-of-resumes-most-of-them-suck-yo
 https://medium.com/@nadeesha/a-practical-guide-to-writing-more-functional-javascript-db49409f71
 https://medium.com/better-programming/understanding-the-this-keyword-in-javascript-cb76d4c7c5e8
 https://medium.com/better-humans/how-to-get-the-unquantifiable-benefits-of-cold-showers-7c2c86a9a9a2
-https://forge.medium.com/how-author-morgan-jerkins-gets-it-all-done-while-having-a-day-job-cf7e9120fc89
-https://towardsdatascience.com/how-to-build-slim-docker-images-fast-ecc246d7f4a7
-https://blog.usejournal.com/how-i-got-into-google-161c97913b8b
-https://open.nytimes.com/how-we-hire-front-end-engineers-at-the-new-york-times-e1294ea8e3f8
+https://medium.com/@austintackaberry/why-you-should-contribute-to-open-source-software-right-now-bec8bd83cfc0?source=search_post---------2
