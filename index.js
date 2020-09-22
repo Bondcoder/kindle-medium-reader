@@ -4,7 +4,9 @@ let articles = ""
 let browser = null
 
 async function openBrowser() {
-    browser = await puppeteer.launch({ headless: true });
+    browser = await puppeteer.launch({ headless: true }).catch(() => {
+        throw new Error('The program has failed');
+    });
 }
 
 async function fetchArticle(url, number) {
@@ -16,39 +18,66 @@ async function fetchArticle(url, number) {
     await page.setViewport({ width: 1200, height: 800 });
     await page.goto(url, { waitUntil: "load" });
     if (number === 0 || number % 4 === 0) {
-        await page.$eval('body > div:nth-child(19) > div > div > div > div > div > div > span > button', el => el.click());
+        try {
+            await page.$eval("body > div:nth-child(19) > div > div > div > div > div > div > button", el => el.click())
+        }
+        catch (err) {
+            console.log('Cannot find the element requested');
+            browser.close();
+            process.exit;
+        };
     }
     await autoScroll(page);
-    await page.pdf({
-        path: "PDF/article-" + number + ".pdf",
-        format: "A4",
-        margin: {
-            top: 60,
-            bottom: 60,
-            left: 60,
-            right: 50
-        },
-        printBackground: true
-    })
+    try {
+        await page.pdf({
+            path: "PDF/article-" + number + ".pdf",
+            format: "A4",
+            margin: {
+                top: 60,
+                bottom: 60,
+                left: 60,
+                right: 50
+            },
+            printBackground: true
+        })
+    }
+    catch (err) {
+        console.log('Please create a PDF folder')
+        browser.close();
+        process.exit;
+    }
 }
 
 async function readTextFile() {
     let startTime = Date.now();
-    var file = "file://" + __dirname + "\\ToRead\\articles.txt";
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function () {
-        if (rawFile.readyState === 4) {
-            if (rawFile.status === 200 || rawFile.status == 0) {
-                articles = rawFile.responseText;
-                articles = articles.replace(/(\r\n|\n|\r)/gm, " ").split(' ');
+    try {
+        var file = "file://" + __dirname + "\\ToRead\\articles.txt";
+        var rawFile = new XMLHttpRequest();
+        await rawFile.open("GET", file, false);
+        rawFile.onreadystatechange = await function () {
+            if (rawFile.readyState === 4) {
+                if (rawFile.status === 200) {
+                    articles = rawFile.responseText;
+                    articles = articles.replace(/(\r\n|\n|\r)/gm, " ").split(' ');
+                }
             }
         }
+        await rawFile.send(null);
     }
-    rawFile.send(null);
+    catch (err) {
+        console.log('Please place an articles.txt file under the ToRead folder');
+        process.exit;
+    }
+
     await openBrowser();
     for (let i = 0; i < articles.length; i++) {
-        await fetchArticle(articles[i], i);
+        try {
+            await fetchArticle(articles[i], i)
+        }
+        catch (err) {
+            console.log('There was a problem fetching the article');
+            process.exit;
+        }
     }
     await browser.close();
     await mergePdfs();
